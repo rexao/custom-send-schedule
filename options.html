@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Custom Send Schedule Settings</title>
+  <style>
+    body {
+      font-family: 'Google Sans', Roboto, Arial, sans-serif;
+      padding: 20px;
+      width: 400px;
+    }
+
+    h1 {
+      font-size: 18px;
+      color: #202124;
+    }
+
+    .preset-list {
+      margin-bottom: 20px;
+    }
+
+    .preset-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      background-color: white;
+      transition: box-shadow 0.2s, opacity 0.2s;
+    }
+
+    .preset-item[draggable="true"] {
+      cursor: grab;
+    }
+
+    .preset-item.dragging {
+      opacity: 0.5;
+      background: #f1f3f4;
+      border: 1px dashed #9aa0a6;
+    }
+
+    .preset-info {
+      pointer-events: none;
+    }
+
+    /* prevent text selection while dragging */
+
+    .preset-info {
+      flex-grow: 1;
+    }
+
+    .preset-label {
+      font-weight: 500;
+    }
+
+    .preset-details {
+      font-size: 12px;
+      color: #5f6368;
+    }
+
+    .delete-btn {
+      background: none;
+      border: none;
+      color: #d93025;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .edit-btn {
+      background: none;
+      border: none;
+      color: #1a73e8;
+      cursor: pointer;
+      padding: 5px;
+      margin-right: 5px;
+    }
+
+    .add-form {
+      border-top: 1px solid #dadce0;
+      padding-top: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+      color: #5f6368;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button.primary {
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: 500;
+    }
+
+    button.primary:hover {
+      background-color: #1557b0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Custom Send Schedule</h1>
+
+  <div id="presetList" class="preset-list">
+    <!-- Presets will be loaded here -->
+  </div>
+
+  <div class="add-form">
+    <h3>Add New Preset</h3>
+    <div class="form-group">
+      <label>Label (e.g., "Next Friday Evening")</label>
+      <input type="text" id="label" placeholder="My Custom Time">
+    </div>
+
+    <div class="form-group">
+      <label>Schedule For</label>
+      <select id="dayType">
+        <option value="tomorrow">Tomorrow</option>
+        <option value="nextWeek">Next Week (Monday)</option>
+        <option value="customDays">In X Days</option>
+        <option value="nextDay">Next [Day of Week]</option>
+      </select>
+    </div>
+
+    <div class="form-group hidden" id="customDaysGroup" style="display:none;">
+      <label>Days from now</label>
+      <input type="number" id="daysOffset" min="1" value="1">
+    </div>
+
+    <div class="form-group hidden" id="nextDayGroup" style="display:none;">
+      <label>Day of Week</label>
+      <select id="targetDay">
+        <option value="1">Monday</option>
+        <option value="2">Tuesday</option>
+        <option value="3">Wednesday</option>
+        <option value="4">Thursday</option>
+        <option value="5">Friday</option>
+        <option value="6">Saturday</option>
+        <option value="0">Sunday</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Time</label>
+      <input type="time" id="time" value="09:00">
+    </div>
+
+    <button id="addPreset" class="primary">Add Preset</button>
+    <div id="refreshContainer" style="display:none; text-align:center; margin-top: 10px;">
+      <button id="refreshGmail"
+        style="background:none; border:1px solid #1a73e8; color:#1a73e8; border-radius:4px; padding:5px 10px; cursor:pointer; width: 100%; box-sizing: border-box;">Refresh
+        Page</button>
+    </div>
+    <div id="status" style="margin-top: 10px; color: green; font-size: 12px; text-align: center;"></div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+
+</html>

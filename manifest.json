@@ -1,0 +1,31 @@
+{
+    "manifest_version": 3,
+    "name": "Custom Send Schedule",
+    "version": "1.0",
+    "description": "Add customizable schedule send times to Gmail.",
+    "permissions": [
+        "storage"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://mail.google.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "css": [
+                "styles.css"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "options_ui": {
+        "page": "options.html",
+        "open_in_tab": true
+    },
+    "action": {
+        "default_title": "Custom Send Schedule Settings",
+        "default_popup": "options.html"
+    }
+}

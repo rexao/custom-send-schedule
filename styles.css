@@ -1,0 +1,23 @@
+/* Match .Az class from Gmail */
+.custom-schedule-item {
+    display: flex;
+    align-items: center;
+    /* Ensure alignment */
+    justify-content: space-between;
+    /* If we want label/time separated, though .Az is just flex. */
+    /* .Az has line-height: 36px and padding 0 24px */
+    line-height: 36px;
+    padding: 0 24px;
+
+    font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    letter-spacing: .2px;
+    color: #202124;
+    cursor: pointer;
+}
+
+/* Hover state matching .Az:hover */
+.custom-schedule-item:hover {
+    background-color: rgba(60, 64, 67, .04);
+    color: #202124;
+}
