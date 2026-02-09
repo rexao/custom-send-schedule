@@ -31,7 +31,8 @@ function renderPresets(presets) {
     div.dataset.index = index; // Store index
 
     let details = `${preset.time}`;
-    if (preset.dayType === 'tomorrow') details += ', Tomorrow';
+    if (preset.dayType === 'today') details += ', Today';
+    else if (preset.dayType === 'tomorrow') details += ', Tomorrow';
     else if (preset.dayType === 'nextWeek') details += ', Next Monday';
     else if (preset.dayType === 'customDays') details += `, In ${preset.daysOffset} days`;
     else if (preset.dayType === 'nextDay') {

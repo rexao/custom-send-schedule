@@ -1,15 +1,17 @@
 {
     "manifest_version": 3,
     "name": "Custom Send Schedule",
-    "version": "1.0",
-    "description": "Add customizable schedule send times to Gmail.",
+    "version": "1.1",
+    "description": "Add customizable schedule send times to Gmail and Outlook (for now).",
     "permissions": [
         "storage"
     ],
     "content_scripts": [
         {
             "matches": [
-                "https://mail.google.com/*"
+                "https://mail.google.com/*",
+                "https://outlook.live.com/*",
+                "https://outlook.office.com/*"
             ],
             "js": [
                 "content.js"
